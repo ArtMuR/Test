@@ -2,6 +2,7 @@ package murashko.an;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -9,7 +10,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         String scan = scanner.nextLine();
-        System.out.println(Check(scan));
+        System.out.print(Check(scan));
 
 
     }
@@ -20,9 +21,16 @@ public class Main {
         int multiplication = 0;
         String outputStr = "";
 
-
         char[] array = s.toCharArray();
         for (int i = 0; i < array.length; i++) {
+
+            if (!String.valueOf(array[i]).matches("[\\w]||[\\Q[]\\E]")) {
+                System.out.println("Введён неккоректный символ");
+                new Error();
+                break;
+
+            }
+
             if (Character.isLetter(array[i]) && bracketsLevel == 0) {
                 outputStr += array[i];
             }
@@ -37,9 +45,20 @@ public class Main {
                 if (bracketsLevel == 0) bracketSymb = i;
                 bracketsLevel++;
 
+                if (!Character.isDigit(array[i - 1])) {
+
+                    System.out.println("Некорректно введено число");
+                    new ExceptionInInitializerError();
+
+                }
 
             } else if (array[i] == ']') {
                 bracketsLevel--;
+                if (bracketsLevel < 0) {
+                    outputStr = "";
+                    System.out.print("Некорректный ввод ");
+                    new ExceptionInInitializerError();
+                }
 
 
                 if (bracketsLevel == 0) {
@@ -53,6 +72,8 @@ public class Main {
 
         return outputStr;
     }
+
+
 }
 
 
