@@ -49,6 +49,7 @@ public class Main {
 
                     System.out.println("Некорректно введено число");
                     new ExceptionInInitializerError();
+                    break;
 
                 }
 
@@ -58,6 +59,7 @@ public class Main {
                     outputStr = "";
                     System.out.print("Некорректный ввод ");
                     new ExceptionInInitializerError();
+                    break;
                 }
 
 
